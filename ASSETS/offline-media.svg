@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Offline media placeholder</title>
+  <desc id="desc">A simple Cockatoo Island themed placeholder shown when a historical image is unavailable offline.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7efe2"/>
+      <stop offset="1" stop-color="#e4ceb0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <path d="M0 454 C120 400 230 520 360 462 C494 402 608 420 800 350 L800 600 L0 600 Z" fill="#8bb3bc" opacity="0.45"/>
+  <path d="M355 96 L506 154 L560 318 L482 478 L300 525 L196 350 L232 168 Z" fill="#263238"/>
+  <path d="M365 132 L468 170 L458 286 L324 286 L276 196 Z" fill="#d9a441"/>
+  <rect x="267" y="352" width="250" height="42" fill="#fffaf1" opacity="0.92"/>
+  <rect x="309" y="432" width="173" height="34" fill="#fffaf1" opacity="0.92"/>
+  <circle cx="326" cy="223" r="22" fill="#b13e2d" stroke="#fffaf1" stroke-width="8"/>
+  <circle cx="432" cy="270" r="22" fill="#7b2f76" stroke="#fffaf1" stroke-width="8"/>
+  <circle cx="397" cy="357" r="22" fill="#637a47" stroke="#fffaf1" stroke-width="8"/>
+  <text x="400" y="72" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="38" font-weight="900" fill="#263238">Media unavailable offline</text>
+  <text x="400" y="560" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#63706e">The tour text, maps, diagrams and saved local assets still work.</text>
+</svg>
