@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Wareamah Walk — Dani & Juice Cockatoo Island Tour</title>
+  <meta name="description" content="Voice-guided Cockatoo Island / Wareamah self-guided tour for Dani and Juice." />
+  <meta name="theme-color" content="#263238" />
+  <meta name="color-scheme" content="light" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Wareamah Walk" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png" />
+  <link rel="preload" href="assets/dockyard-map.jpeg" as="image" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <noscript><div class="noscript">This walking tour app needs JavaScript for voice, maps and progress. Print the page as a fallback.</div></noscript>
+  <a class="skip-link" href="#main">Skip to tour</a>
+  <header class="app-header">
+    <div class="brand-row">
+      <div class="brand-mark" aria-hidden="true">W</div>
+      <div>
+        <p class="eyebrow">Cockatoo Island / Wareamah</p>
+        <h1>Wareamah Walk</h1>
+        <p class="subhead">Dani & Juice’s voice-guided convict + maritime history tour.</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span id="offlineStatus" class="connection-pill" role="status" aria-live="polite">Checking offline</span>
+      <button id="offlineSaveBtn" class="ghost">Save offline</button>
+      <button id="installBtn" class="ghost" hidden>Install app</button>
+      <button id="updateBtn" class="ghost update" hidden>Update ready</button>
+      <button id="sourcesBtn" class="ghost">Sources</button>
+      <button id="resetBtn" class="ghost">Reset progress</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero-grid">
+      <article class="hero-card panel">
+        <p class="eyebrow">2–3 hour field guide</p>
+        <h2 id="appTitle">Voice-guided route</h2>
+        <p id="appSubtitle">The app is loading.</p>
+        <div class="status-grid" aria-label="Tour summary">
+          <div><strong id="totalStops">12</strong><span>stops</span></div>
+          <div><strong id="visitedCount">0</strong><span>visited</span></div>
+          <div><strong id="timeEstimate">2h 25m</strong><span>estimate</span></div>
+        </div>
+        <div class="mode-box">
+          <label class="toggle-row">
+            <input type="checkbox" id="lowEnergyToggle" />
+            <span><strong>Low-energy route</strong><small>Skip optional detours. Still hits the core story.</small></span>
+          </label>
+          <label class="toggle-row">
+            <input type="checkbox" id="autoAdvanceToggle" />
+            <span><strong>Auto-advance narration</strong><small>When one stop finishes, queue the next visible stop.</small></span>
+          </label>
+        </div>
+      </article>
+
+      <aside class="voice-panel panel" aria-label="Voice controls">
+        <div class="voice-top">
+          <div>
+            <p class="eyebrow">Voice guide</p>
+            <h2>Listen while walking</h2>
+          </div>
+          <span class="pill" id="speechStatus">Idle</span>
+        </div>
+        <div class="voice-buttons">
+          <button id="playCurrentBtn" class="primary">▶ Play current stop</button>
+          <button id="pauseBtn">Pause</button>
+          <button id="resumeBtn">Resume</button>
+          <button id="stopBtn" class="danger">Stop</button>
+        </div>
+        <label class="field-label" for="voiceSelect">Voice</label>
+        <select id="voiceSelect"></select>
+        <label class="field-label" for="rateSlider">Speed <span id="rateValue">1.00×</span></label>
+        <input id="rateSlider" type="range" min="0.75" max="1.25" step="0.05" value="1" />
+        <p class="muted tiny">Browser voice is used; no audio files required. Screen-lock playback depends on the phone/browser. Because of course it does.</p>
+      </aside>
+    </section>
+
+    <section class="panel route-panel" aria-label="Route controls and maps">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Interactive route map</p>
+          <h2>Tap a marker or stop</h2>
+        </div>
+        <div class="map-tabs" role="tablist" aria-label="Map selector">
+          <button class="map-tab active" data-map="dockyard">Dockyard / arrival map</button>
+          <button class="map-tab" data-map="convict">Convict plateau map</button>
+        </div>
+      </div>
+      <div class="map-wrap" id="mapWrap">
+        <img id="routeMap" src="assets/dockyard-map.jpeg" alt="Cockatoo Island route map" />
+        <div id="mapMarkers" class="map-markers" aria-label="Tour stop markers"></div>
+      </div>
+      <div class="map-legend">
+        <span><i class="dot standard"></i> standard route</span>
+        <span><i class="dot optional"></i> optional detour</span>
+        <span><i class="dot visited"></i> visited</span>
+      </div>
+    </section>
+
+    <section class="panel now-playing" aria-live="polite">
+      <div>
+        <p class="eyebrow">Current stop</p>
+        <h2 id="currentStopTitle">Stop 1 — Arrival</h2>
+        <p id="currentStopSummary">Start at the Visitor Centre / Eastern Apron.</p>
+      </div>
+      <div class="now-actions">
+        <button id="prevStopBtn">← Previous</button>
+        <button id="markVisitedBtn" class="primary">Mark visited</button>
+        <button id="nextStopBtn">Next →</button>
+      </div>
+    </section>
+
+    <section class="tour-layout">
+      <nav class="stop-nav panel" aria-label="Tour stops">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow">Stops</p>
+            <h2>Route list</h2>
+          </div>
+        </div>
+        <ol id="stopList" class="stop-list"></ol>
+      </nav>
+
+      <section id="stopDetail" class="stop-detail" aria-label="Selected tour stop"></section>
+    </section>
+  </main>
+
+  <dialog id="sourcesDialog" class="sources-dialog">
+    <div class="dialog-head">
+      <div>
+        <p class="eyebrow">Research + media sources</p>
+        <h2>Source deck</h2>
+      </div>
+      <button id="closeSourcesBtn" class="ghost">Close</button>
+    </div>
+    <p class="muted">Historical media is linked from source holders for personal tour/prototype use. Clear image rights before public or commercial deployment.</p>
+    <div id="sourcesList" class="sources-list"></div>
+  </dialog>
+
+  <dialog id="installDialog" class="sources-dialog install-dialog">
+    <div class="dialog-head">
+      <div>
+        <p class="eyebrow">PWA install</p>
+        <h2>Add to home screen</h2>
+      </div>
+      <button id="closeInstallBtn" class="ghost">Close</button>
+    </div>
+    <div class="install-steps">
+      <section>
+        <h3>iPhone / iPad</h3>
+        <p>Open in Safari, tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.</p>
+      </section>
+      <section>
+        <h3>Android / Chrome</h3>
+        <p>Use the browser’s <strong>Install app</strong> prompt, or open the menu and tap <strong>Add to Home screen</strong>.</p>
+      </section>
+      <section>
+        <h3>Before the ferry</h3>
+        <p>Tap <strong>Save offline</strong> while you have signal. The app shell, maps, diagrams and any cacheable media will be stored locally.</p>
+      </section>
+    </div>
+  </dialog>
+
+  <template id="mediaTemplate">
+    <figure class="media-card">
+      <img loading="lazy" alt="" />
+      <figcaption></figcaption>
+    </figure>
+  </template>
+
+  <script defer src="tour-data.js"></script>
+  <script defer src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "id": "./",
+  "name": "Wareamah Walk — Dani & Juice Cockatoo Island Tour",
+  "short_name": "Wareamah Walk",
+  "description": "A voice-guided Cockatoo Island / Wareamah walking tour covering convict, maritime, industrial and First Nations history.",
+  "lang": "en-AU",
+  "dir": "ltr",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "browser"],
+  "orientation": "portrait-primary",
+  "background_color": "#f7efe2",
+  "theme_color": "#263238",
+  "categories": ["education", "travel", "navigation"],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Start tour",
+      "short_name": "Start",
+      "description": "Open the first stop at the ferry and Visitor Centre.",
+      "url": "./index.html?source=shortcut#main",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Low-energy route",
+      "short_name": "Low energy",
+      "description": "Open with optional detours hidden.",
+      "url": "./index.html?mode=low-energy&source=shortcut",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ],
+  "icons": [
+    { "src": "assets/icons/icon-72.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "assets/icons/screenshot-wide.png", "sizes": "1280x720", "type": "image/png", "form_factor": "wide", "label": "Route overview, voice controls and interactive map" },
+    { "src": "assets/icons/screenshot-mobile.png", "sizes": "750x1334", "type": "image/png", "form_factor": "narrow", "label": "Mobile walking tour view" }
+  ]
+}
